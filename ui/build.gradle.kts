@@ -3,6 +3,8 @@ import com.sk.splash.buildSrc.Configuration
 plugins {
     id(com.sk.splash.buildSrc.Configuration.Plugins.androidLibrary)
     id(com.sk.splash.buildSrc.Configuration.Plugins.kotlinAndroid)
+    id(com.sk.splash.buildSrc.Configuration.Plugins.kapt)
+    id(com.sk.splash.buildSrc.Configuration.Plugins.hiltAndroid)
 }
 
 android {
@@ -12,6 +14,7 @@ android {
         viewBinding = true
     }
 }
+
 dependencies {
     implementation(Configuration.AndroidX.coreKtx)
     implementation(Configuration.AndroidX.appCompat)
@@ -19,7 +22,7 @@ dependencies {
     implementation(Configuration.Google.material)
 
     implementation(Configuration.Hilt.daggerAndroid)
-    implementation(Configuration.Hilt.lifecycleViewModel)
-    kotlin(Configuration.Hilt.daggerAndroidCompiler)
-    kotlin(Configuration.Hilt.compiler)
+    kapt(Configuration.Hilt.daggerAndroidCompiler)
+
+    implementation(Configuration.ThreeTen.abp)
 }

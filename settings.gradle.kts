@@ -4,5 +4,4 @@ include(
     ":remote",
     ":ui",
     ":data",
-    ":di",
 )
