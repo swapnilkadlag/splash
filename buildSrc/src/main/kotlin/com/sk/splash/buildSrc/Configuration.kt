@@ -53,7 +53,7 @@ object Configuration {
 
     object Retrofit {
         private const val retrofitVersion = "2.9.0"
-        private const val moshiVersion = "1.12.0"
+        private const val moshiVersion = "1.13.0"
 
         const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         const val moshi = "com.squareup.moshi:moshi-kotlin:$moshiVersion"

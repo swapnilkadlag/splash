@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/splash.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/splash.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/splash.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/splash.buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/splash.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/splash.data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/di/splash.di.iml" filepath="$PROJECT_DIR$/.idea/modules/di/splash.di.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/local/splash.local.iml" filepath="$PROJECT_DIR$/.idea/modules/local/splash.local.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/remote/splash.remote.iml" filepath="$PROJECT_DIR$/.idea/modules/remote/splash.remote.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ui/splash.ui.iml" filepath="$PROJECT_DIR$/.idea/modules/ui/splash.ui.iml" />

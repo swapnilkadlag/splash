@@ -15,6 +15,8 @@ android {
             buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("apiKey"))
         }
     }
+
+
 }
 
 dependencies {

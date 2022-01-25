@@ -1,8 +1,10 @@
 package com.sk.splash.remote.api
 
 import com.sk.splash.remote.BuildConfig
-import com.sk.splash.remote.utils.Constants.PAGE_SIZE
 import com.sk.splash.remote.models.RemoteCollection
+import com.sk.splash.remote.utils.Constants.PAGE_SIZE
+import com.sk.splash.remote.models.RemoteCollectionDetails
+import com.sk.splash.remote.models.RemotePhotoDetails
 import com.sk.splash.remote.models.RemoteSearch
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -31,4 +33,11 @@ interface CollectionApi {
         @Query("per_page") perPage: Int = PAGE_SIZE,
         @Query("client_id") clientId: String = BuildConfig.API_KEY
     ): List<RemoteCollection>
+
+    @GET("collections/{id}")
+    suspend fun getCollection(
+        @Path("id") id: String,
+        @Query("client_id") client_id: String = BuildConfig.API_KEY
+    ): RemoteCollectionDetails
+
 }

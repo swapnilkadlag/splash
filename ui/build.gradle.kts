@@ -16,6 +16,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+
     implementation(Configuration.AndroidX.coreKtx)
     implementation(Configuration.AndroidX.appCompat)
     implementation(Configuration.AndroidX.constraintLayout)

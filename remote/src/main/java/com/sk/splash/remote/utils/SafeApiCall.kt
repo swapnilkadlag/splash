@@ -2,12 +2,13 @@ package com.sk.splash.remote.utils
 
 import com.sk.splash.remote.models.RemoteResult
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
 
 suspend fun <T> safeApiCall(
-    dispatcher: CoroutineDispatcher,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
     apiCall: suspend () -> T
 ): RemoteResult<T> {
     return withContext(dispatcher) {
