@@ -17,7 +17,7 @@ object Configuration {
     }
 
     object Gradle {
-        const val buildTools = "com.android.tools.build:gradle:7.0.4"
+        const val buildTools = "com.android.tools.build:gradle:7.1.0"
     }
 
     object Kotlin {
