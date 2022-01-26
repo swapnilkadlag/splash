@@ -2,13 +2,14 @@ package com.sk.splash.remote.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import org.threeten.bp.LocalDateTime
 
 @JsonClass(generateAdapter = true)
 data class RemotePhotoDetails(
     @Json(name = "id")
     val id: String,
     @Json(name = "created_at")
-    val createdAt: String,
+    val createdAt: LocalDateTime,
     @Json(name = "width")
     val width: Int,
     @Json(name = "height")

@@ -27,4 +27,5 @@ dependencies {
     kapt(Configuration.Hilt.daggerAndroidCompiler)
 
     implementation(Configuration.ThreeTen.abp)
+    implementation(Configuration.Kotlin.coroutinesCore)
 }
