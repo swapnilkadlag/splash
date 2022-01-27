@@ -31,6 +31,7 @@ object Configuration {
         const val coreKtx = "androidx.core:core-ktx:1.7.0"
         const val appCompat = "androidx.appcompat:appcompat:1.4.1"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
+        const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
     }
 
     object Google {
@@ -68,5 +69,12 @@ object Configuration {
         const val runtime = "androidx.room:room-runtime:$version"
         const val compiler = "androidx.room:room-compiler:$version"
         const val ktx = "androidx.room:room-ktx:$version"
+    }
+
+    object Navigation {
+        private const val version = "2.4.0"
+
+        const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.4.0"
+        const val uiKtx = "androidx.navigation:navigation-ui-ktx:2.4.0"
     }
 }
