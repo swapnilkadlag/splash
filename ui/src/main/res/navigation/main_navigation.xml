@@ -2,9 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_main"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/home">
     <fragment
-        android:id="@+id/home_fragment"
+        android:id="@+id/home"
         android:name="com.sk.splash.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="Home" />
+
+    <fragment
+        android:id="@+id/search"
+        android:name="com.sk.splash.ui.search.SearchFragment"
+        android:label="Search" />
+
+    <fragment
+        android:id="@+id/favorites"
+        android:name="com.sk.splash.ui.favourites.FavoritesFragment"
+        android:label="Favorites" />
 </navigation>

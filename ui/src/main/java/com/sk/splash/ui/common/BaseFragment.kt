@@ -10,8 +10,10 @@ import androidx.viewbinding.ViewBinding
 typealias BindingProvider<B> = (LayoutInflater, ViewGroup?, Boolean) -> B
 
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
+    
     abstract val bindingInflater: BindingProvider<B>
     lateinit var binding: B
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
