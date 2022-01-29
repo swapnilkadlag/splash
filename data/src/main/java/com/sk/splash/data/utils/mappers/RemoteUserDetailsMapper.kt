@@ -1,15 +1,15 @@
 package com.sk.splash.data.utils.mappers
 
-import com.sk.splash.data.utils.models.UserDetails
+import com.sk.splash.data.utils.models.UIUserDetails
 import com.sk.splash.remote.models.RemoteUserDetails
 
-interface RemoteUserDetailsMapper : Mapper<RemoteUserDetails, UserDetails>
+interface RemoteUserDetailsMapper : Mapper<RemoteUserDetails, UIUserDetails>
 
 class RemoteUserDetailsMapperImpl(
     private val profileImageUrlMapper: RemoteProfileImageUrlMapper,
 ) : RemoteUserDetailsMapper {
-    override fun map(from: RemoteUserDetails): UserDetails {
-        return UserDetails(
+    override fun map(from: RemoteUserDetails): UIUserDetails {
+        return UIUserDetails(
             from.id,
             from.username,
             from.name,

@@ -1,15 +1,15 @@
 package com.sk.splash.data.utils.mappers
 
-import com.sk.splash.data.utils.models.Photo
+import com.sk.splash.data.utils.models.UIPhoto
 import com.sk.splash.local.entities.LocalCoverPhoto
 
-interface LocalCoverPhotoMapper : ReverseMapper<LocalCoverPhoto, Photo>
+interface LocalCoverPhotoMapper : ReverseMapper<LocalCoverPhoto, UIPhoto>
 
 class LocalCoverPhotoMapperImpl(
     private val photoUrlsMapper: LocalPhotoUrlsMapper,
 ) : LocalCoverPhotoMapper {
-    override fun map(from: LocalCoverPhoto): Photo {
-        return Photo(
+    override fun map(from: LocalCoverPhoto): UIPhoto {
+        return UIPhoto(
             "",
             from.width,
             from.height,
@@ -18,7 +18,7 @@ class LocalCoverPhotoMapperImpl(
         )
     }
 
-    override fun mapBack(to: Photo): LocalCoverPhoto {
+    override fun mapBack(to: UIPhoto): LocalCoverPhoto {
         return LocalCoverPhoto(
             to.width,
             to.height,

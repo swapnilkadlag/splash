@@ -1,54 +1,49 @@
 package com.sk.splash.data.utils.repository
 
 import com.sk.splash.data.utils.models.*
-import com.sk.splash.data.utils.models.Collection
-import com.sk.splash.local.entities.LocalCollection
-import com.sk.splash.local.entities.LocalPhoto
-import com.sk.splash.local.entities.LocalUser
-import com.sk.splash.remote.models.*
-import com.sk.splash.remote.utils.Constants
+import com.sk.splash.data.utils.models.UICollection
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
-    suspend fun saveFavouriteUser(user: User)
+    suspend fun saveFavouriteUser(user: UIUser)
 
     suspend fun removeFavouriteUser(username: String)
 
-    fun getFavouriteUsers(): Flow<List<User>>
+    fun getFavouriteUsers(): Flow<List<UIUser>>
 
-    suspend fun saveFavouritePhoto(photo: Photo)
+    suspend fun saveFavouritePhoto(photo: UIPhoto)
 
     suspend fun removeFavouritePhoto(id: String)
 
-    fun getFavouritePhotos(): Flow<List<Photo>>
+    fun getFavouritePhotos(): Flow<List<UIPhoto>>
 
-    suspend fun saveFavouriteCollection(collection: Collection)
+    suspend fun saveFavouriteCollection(collection: UICollection)
 
     suspend fun removeFavouriteCollection(id: String)
 
-    fun getFavouriteCollections(): Flow<List<Collection>>
+    fun getFavouriteCollections(): Flow<List<UICollection>>
 
-    suspend fun getLatestPhotos(page: Int): Result<List<Photo>>
+    suspend fun getLatestPhotos(page: Int): UIResult<List<UIPhoto>>
 
-    suspend fun getPopularPhotos(page: Int): Result<List<Photo>>
+    suspend fun getPopularPhotos(page: Int): UIResult<List<UIPhoto>>
 
-    suspend fun searchPhotos(query: String, page: Int): Result<Search<Photo>>
+    suspend fun searchPhotos(query: String, page: Int): UIResult<UISearch<UIPhoto>>
 
-    suspend fun getCollectionPhotos(id: String, page: Int): Result<List<Photo>>
+    suspend fun getCollectionPhotos(id: String, page: Int): UIResult<List<UIPhoto>>
 
-    suspend fun getUploadedPhotos(username: String, page: Int): Result<List<Photo>>
+    suspend fun getUploadedPhotos(username: String, page: Int): UIResult<List<UIPhoto>>
 
-    suspend fun getPhoto(id: String): Result<PhotoDetails>
+    suspend fun getPhoto(id: String): UIResult<UIPhotoDetails>
 
-    suspend fun getFeaturedCollections(page: Int): Result<List<Collection>>
+    suspend fun getFeaturedCollections(page: Int): UIResult<List<UICollection>>
 
-    suspend fun searchCollections(query: String, page: Int): Result<Search<Collection>>
+    suspend fun searchCollections(query: String, page: Int): UIResult<UISearch<UICollection>>
 
-    suspend fun getCreatedCollections(username: String, page: Int): Result<List<Collection>>
+    suspend fun getCreatedCollections(username: String, page: Int): UIResult<List<UICollection>>
 
-    suspend fun getCollection(id: String): Result<CollectionDetails>
+    suspend fun getCollection(id: String): UIResult<UICollectionDetails>
 
-    suspend fun searchUsers(query: String, page: Int): Result<Search<User>>
+    suspend fun searchUsers(query: String, page: Int): UIResult<UISearch<UIUser>>
 
-    suspend fun getUser(username: String): Result<UserDetails>
+    suspend fun getUser(username: String): UIResult<UIUserDetails>
 }

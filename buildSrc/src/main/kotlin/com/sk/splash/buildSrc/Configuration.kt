@@ -12,6 +12,7 @@ object Configuration {
         const val androidApplication = "com.android.application"
         const val androidLibrary = "com.android.library"
         const val kotlinAndroid = "kotlin-android"
+        const val kotlinParcelize = "kotlin-parcelize"
         const val kapt = "kotlin-kapt"
         const val hiltAndroid = "dagger.hilt.android.plugin"
     }
@@ -76,5 +77,12 @@ object Configuration {
 
         const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.4.0"
         const val uiKtx = "androidx.navigation:navigation-ui-ktx:2.4.0"
+    }
+
+    object Glide {
+        private const val version = "4.12.0"
+        
+        const val glide = "com.github.bumptech.glide:glide:$version"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:$version"
     }
 }

@@ -10,6 +10,11 @@ plugins {
 android {
     compileSdk = Configuration.compileSdkVersion
 
+    defaultConfig {
+        minSdk = Configuration.minSdkVersion
+        targetSdk = Configuration.targetSdkVersion
+    }
+
     buildFeatures {
         viewBinding = true
     }
@@ -28,4 +33,6 @@ dependencies {
     implementation(Configuration.Kotlin.coroutinesCore)
     implementation(Configuration.Navigation.fragmentKtx)
     implementation(Configuration.Navigation.uiKtx)
+    implementation(Configuration.Glide.glide)
+    implementation(Configuration.Glide.glideCompiler)
 }

@@ -4,7 +4,7 @@ import com.sk.splash.data.utils.models.*
 import com.sk.splash.data.utils.utils.UIDateTimeConverter
 import com.sk.splash.remote.models.*
 
-interface RemotePhotoDetailsMapper : Mapper<RemotePhotoDetails, PhotoDetails>
+interface RemotePhotoDetailsMapper : Mapper<RemotePhotoDetails, UIPhotoDetails>
 
 class RemotePhotoDetailsMapperImpl(
     private val dateTimeConverter: UIDateTimeConverter,
@@ -13,8 +13,8 @@ class RemotePhotoDetailsMapperImpl(
     private val locationMapper: RemoteLocationMapper,
     private val photoUrlsMapper: RemotePhotoUrlsMapper,
 ) : RemotePhotoDetailsMapper {
-    override fun map(from: RemotePhotoDetails): PhotoDetails {
-        return PhotoDetails(
+    override fun map(from: RemotePhotoDetails): UIPhotoDetails {
+        return UIPhotoDetails(
             from.id,
             dateTimeConverter.toString(from.createdAt) ?: "",
             from.width,

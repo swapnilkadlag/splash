@@ -1,13 +1,13 @@
 package com.sk.splash.data.utils.mappers
 
-import com.sk.splash.data.utils.models.PhotoUrls
+import com.sk.splash.data.utils.models.UIPhotoUrls
 import com.sk.splash.local.entities.LocalPhotoUrls
 
-interface LocalPhotoUrlsMapper : ReverseMapper<LocalPhotoUrls, PhotoUrls>
+interface LocalPhotoUrlsMapper : ReverseMapper<LocalPhotoUrls, UIPhotoUrls>
 
 class LocalPhotoUrlsMapperImpl : LocalPhotoUrlsMapper {
-    override fun map(from: LocalPhotoUrls): PhotoUrls {
-        return PhotoUrls(
+    override fun map(from: LocalPhotoUrls): UIPhotoUrls {
+        return UIPhotoUrls(
             from.raw,
             from.full,
             from.regular,
@@ -16,7 +16,7 @@ class LocalPhotoUrlsMapperImpl : LocalPhotoUrlsMapper {
         )
     }
 
-    override fun mapBack(to: PhotoUrls): LocalPhotoUrls {
+    override fun mapBack(to: UIPhotoUrls): LocalPhotoUrls {
         return LocalPhotoUrls(
             to.raw,
             to.full,

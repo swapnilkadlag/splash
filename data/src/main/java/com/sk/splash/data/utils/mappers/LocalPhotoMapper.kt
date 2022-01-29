@@ -1,16 +1,16 @@
 package com.sk.splash.data.utils.mappers
 
-import com.sk.splash.data.utils.models.Photo
+import com.sk.splash.data.utils.models.UIPhoto
 import com.sk.splash.local.entities.LocalPhoto
 import org.threeten.bp.LocalDateTime
 
-interface LocalPhotoMapper : ReverseMapper<LocalPhoto, Photo>
+interface LocalPhotoMapper : ReverseMapper<LocalPhoto, UIPhoto>
 
 class LocalPhotoMapperImpl(
     private val photoUrlsMapper: LocalPhotoUrlsMapper,
 ) : LocalPhotoMapper {
-    override fun map(from: LocalPhoto): Photo {
-        return Photo(
+    override fun map(from: LocalPhoto): UIPhoto {
+        return UIPhoto(
             from.id,
             from.width,
             from.height,
@@ -19,7 +19,7 @@ class LocalPhotoMapperImpl(
         )
     }
 
-    override fun mapBack(to: Photo): LocalPhoto {
+    override fun mapBack(to: UIPhoto): LocalPhoto {
         return LocalPhoto(
             to.id,
             to.width,

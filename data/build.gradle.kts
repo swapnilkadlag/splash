@@ -4,6 +4,7 @@ plugins {
     id(com.sk.splash.buildSrc.Configuration.Plugins.androidLibrary)
     id(com.sk.splash.buildSrc.Configuration.Plugins.kotlinAndroid)
     id(com.sk.splash.buildSrc.Configuration.Plugins.kapt)
+    id(com.sk.splash.buildSrc.Configuration.Plugins.kotlinParcelize)
 }
 
 android {
