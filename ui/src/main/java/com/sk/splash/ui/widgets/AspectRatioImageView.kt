@@ -3,14 +3,15 @@ package com.sk.splash.ui.widgets
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
+import com.google.android.material.imageview.ShapeableImageView
 
 class AspectRatioImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-) : AppCompatImageView(context, attrs, defStyleAttr) {
+) : ShapeableImageView(context, attrs, defStyleAttr) {
 
-    private var aspectRatio: Float = 1f
+    private var aspectRatio: Float = 0f
 
     fun setAspectRatio(ratio: Float) {
         aspectRatio = ratio
@@ -18,9 +19,10 @@ class AspectRatioImageView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.getSize(widthMeasureSpec)
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        if(aspectRatio <= 0) return
+        val width = measuredWidth
         val height = (aspectRatio * width).toInt()
-        val newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
-        setMeasuredDimension(widthMeasureSpec, newHeightMeasureSpec)
+        setMeasuredDimension(width, height)
     }
 }

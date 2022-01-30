@@ -16,6 +16,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var homeTabsAdapter: TabsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         homeTabsAdapter = TabsAdapter(this, 3) { position ->
             when (position) {
                 0 -> LatestPhotosFragment()
@@ -34,6 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     else -> throw IllegalStateException()
                 }
             }.attach()
+            viewPager.offscreenPageLimit = 2
         }
     }
 }

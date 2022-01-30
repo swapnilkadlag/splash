@@ -10,6 +10,11 @@ abstract class BaseListAdapter<VB : ViewBinding, VH : BaseListAdapter.BaseViewHo
     private val onItemClick: (T) -> Unit,
     diffUtil: DiffUtil.ItemCallback<T>
 ) : PagingDataAdapter<T, VH>(diffUtil) {
+
+    override fun setStateRestorationPolicy(strategy: StateRestorationPolicy) {
+        super.setStateRestorationPolicy(StateRestorationPolicy.PREVENT_WHEN_EMPTY)
+    }
+
     abstract fun createViewHolder(parent: ViewGroup, onItemClick: (T) -> Unit): VH
 
     override fun onBindViewHolder(holder: VH, position: Int) {

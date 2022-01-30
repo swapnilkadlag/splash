@@ -36,7 +36,6 @@ class PhotoAdapter(
                 .placeholder(ColorDrawable(Color.parseColor(item.color)))
                 .transition(DrawableTransitionOptions.withCrossFade(200))
                 .into(binding.ivPhoto)
-                .waitForLayout()
 
             binding.root.setOnClickListener { onItemClick(item) }
         }

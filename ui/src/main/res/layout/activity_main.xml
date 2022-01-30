@@ -14,6 +14,7 @@
             android:id="@+id/toolbarContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#1E1E1F"
             app:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,11 +25,11 @@
                 style="@style/Widget.MaterialComponents.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextAppearance="?textAppearanceHeadline6"
                 android:layout_weight="1"
                 app:navigationIconTint="?android:attr/textColorPrimary"
                 app:title="Splash"
-                app:titleCentered="true" />
+                app:titleCentered="true"
+                app:titleTextAppearance="?textAppearanceHeadline6" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,6 +49,7 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#1E1E1F"
             android:elevation="0dp"
             app:elevation="0dp"
             app:labelVisibilityMode="unlabeled"

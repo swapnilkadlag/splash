@@ -1,5 +1,6 @@
 package com.sk.splash.data.paging
 
+import android.util.Log
 import androidx.paging.Pager
 
 fun <V : Any> infinitePager(
@@ -12,6 +13,7 @@ fun <V : Any> infinitePager(
 class InfinitePagedSource<V : Any>(
     private val block: suspend (Int) -> List<V>,
 ) : PagedSource<V>() {
+
     override fun getNextKey(currentPage: Int): Int {
         return currentPage + 1
     }

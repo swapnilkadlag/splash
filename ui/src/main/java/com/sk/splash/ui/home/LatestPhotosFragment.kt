@@ -9,35 +9,16 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sk.splash.ui.fragments.PhotosFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LatestPhotosFragment : PhotosFragment() {
 
-    companion object {
-        const val TAG = "latestPhotosFragment"
-    }
+    override val items get() = viewModel.latestPhotos
 
     private val viewModel: HomeViewModel by viewModels({ requireParentFragment() })
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView()
-
-        viewModel.latestPhotos()
-            .onEach(photoAdapter::submitData)
-            .launchIn(lifecycleScope)
-        photoAdapter.loadStateFlow.onEach {
-            binding.progressBar.isVisible = it.refresh is LoadState.Loading
-        }.launchIn(lifecycleScope)
-    }
-
-    private fun setupRecyclerView() {
-        binding.rvPhotos.apply {
-            adapter = photoAdapter
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        }
-    }
 }
