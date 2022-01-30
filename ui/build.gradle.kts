@@ -35,4 +35,5 @@ dependencies {
     implementation(Configuration.Navigation.uiKtx)
     implementation(Configuration.Glide.glide)
     implementation(Configuration.Glide.glideCompiler)
+    implementation(Configuration.AndroidX.pagingRuntime)
 }

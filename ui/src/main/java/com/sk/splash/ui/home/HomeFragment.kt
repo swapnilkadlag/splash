@@ -2,13 +2,11 @@ package com.sk.splash.ui.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.sk.splash.ui.common.BaseFragment
-import com.sk.splash.ui.common.BindingProvider
-import com.sk.splash.ui.common.TabsAdapter
+import com.sk.splash.ui.adapters.TabsAdapter
 import com.sk.splash.ui.databinding.FragmentHomeBinding
+import com.sk.splash.ui.fragments.BaseFragment
+import com.sk.splash.ui.fragments.BindingProvider
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 

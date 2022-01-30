@@ -29,10 +29,14 @@ object Configuration {
     }
 
     object AndroidX {
+        private const val pagingVersion = "3.1.0"
+
         const val coreKtx = "androidx.core:core-ktx:1.7.0"
         const val appCompat = "androidx.appcompat:appcompat:1.4.1"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val paging = "androidx.paging:paging-common-ktx:$pagingVersion"
+        const val pagingRuntime =  "androidx.paging:paging-runtime-ktx:$pagingVersion"
     }
 
     object Google {
@@ -81,7 +85,7 @@ object Configuration {
 
     object Glide {
         private const val version = "4.12.0"
-        
+
         const val glide = "com.github.bumptech.glide:glide:$version"
         const val glideCompiler = "com.github.bumptech.glide:compiler:$version"
     }

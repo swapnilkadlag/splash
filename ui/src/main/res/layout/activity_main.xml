@@ -24,6 +24,7 @@
                 style="@style/Widget.MaterialComponents.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:titleTextAppearance="?textAppearanceHeadline6"
                 android:layout_weight="1"
                 app:navigationIconTint="?android:attr/textColorPrimary"
                 app:title="Splash"
