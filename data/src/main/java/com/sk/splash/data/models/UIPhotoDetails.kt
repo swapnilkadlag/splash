@@ -17,4 +17,4 @@ data class UIPhotoDetails(
     val location: UILocation?,
     val urls: UIPhotoUrls,
     val webLink: String,
-):Parcelable
+) : Parcelable

@@ -2,13 +2,16 @@ package com.sk.splash.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sk.splash.data.models.UIPhoto
+import com.sk.splash.ui.R
 import com.sk.splash.ui.adapters.PhotoAdapter
 import com.sk.splash.ui.databinding.FragmentPhotosBinding
 import kotlinx.coroutines.flow.Flow
@@ -25,7 +28,8 @@ abstract class PhotosFragment : BaseFragment<FragmentPhotosBinding>() {
     abstract val items: Flow<PagingData<UIPhoto>>
 
     private fun onPhotoClicked(photo: UIPhoto) {
-        TODO()
+        val bundle = bundleOf("photoId" to photo.id)
+        findNavController().navigate(R.id.action_home_to_photoDetails, bundle)
     }
 
     private fun setupRecyclerView() {

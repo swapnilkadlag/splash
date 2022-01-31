@@ -3,10 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_main"
     app:startDestination="@id/home">
+
     <fragment
         android:id="@+id/home"
         android:name="com.sk.splash.ui.home.HomeFragment"
-        android:label="Home" />
+        android:label="Home" >
+
+        <action
+            android:id="@+id/action_home_to_photoDetails"
+            app:destination="@id/photoDetails"
+            app:enterAnim="@anim/slide_in_from_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down_to_bottom"  />
+
+    </fragment>
 
     <fragment
         android:id="@+id/search"
@@ -17,4 +28,17 @@
         android:id="@+id/favorites"
         android:name="com.sk.splash.ui.favourites.FavoritesFragment"
         android:label="Favorites" />
+
+    <fragment
+        android:id="@+id/photoDetails"
+        android:name="com.sk.splash.ui.photodetails.PhotoDetailsFragment"
+        android:label="Overview">
+
+        <argument
+            android:name="photoId"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
 </navigation>

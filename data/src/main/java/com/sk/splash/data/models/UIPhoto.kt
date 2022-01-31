@@ -10,4 +10,4 @@ data class UIPhoto(
     val height: Int,
     val urls: UIPhotoUrls,
     val color: String,
-):Parcelable
+) : Parcelable

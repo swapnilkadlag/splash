@@ -5,6 +5,7 @@ plugins {
     id(com.sk.splash.buildSrc.Configuration.Plugins.kotlinAndroid)
     id(com.sk.splash.buildSrc.Configuration.Plugins.kapt)
     id(com.sk.splash.buildSrc.Configuration.Plugins.hiltAndroid)
+    id(com.sk.splash.buildSrc.Configuration.Plugins.navigationSafeArgs)
 }
 
 android {

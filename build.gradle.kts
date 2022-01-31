@@ -7,6 +7,7 @@ buildscript {
         classpath(com.sk.splash.buildSrc.Configuration.Gradle.buildTools)
         classpath(com.sk.splash.buildSrc.Configuration.Kotlin.gradlePlugin)
         classpath(com.sk.splash.buildSrc.Configuration.Hilt.gradlePlugin)
+        classpath(com.sk.splash.buildSrc.Configuration.Navigation.safeArgsPlugin)
     }
 }
 

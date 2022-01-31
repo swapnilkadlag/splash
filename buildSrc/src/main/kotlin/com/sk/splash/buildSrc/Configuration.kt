@@ -15,10 +15,11 @@ object Configuration {
         const val kotlinParcelize = "kotlin-parcelize"
         const val kapt = "kotlin-kapt"
         const val hiltAndroid = "dagger.hilt.android.plugin"
+        const val navigationSafeArgs = "androidx.navigation.safeargs"
     }
 
     object Gradle {
-        const val buildTools = "com.android.tools.build:gradle:7.1.0"
+        const val buildTools = "com.android.tools.build:gradle:7.0.4"
     }
 
     object Kotlin {
@@ -79,8 +80,9 @@ object Configuration {
     object Navigation {
         private const val version = "2.4.0"
 
-        const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.4.0"
-        const val uiKtx = "androidx.navigation:navigation-ui-ktx:2.4.0"
+        const val safeArgsPlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
+        const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+        const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
     }
 
     object Glide {

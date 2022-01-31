@@ -2,6 +2,7 @@ package com.sk.splash.data.mappers
 
 import com.sk.splash.data.models.UIPhoto
 import com.sk.splash.local.entities.LocalCoverPhoto
+import java.util.*
 
 interface LocalCoverPhotoMapper : ReverseMapper<LocalCoverPhoto, UIPhoto>
 

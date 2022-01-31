@@ -12,7 +12,7 @@ abstract class BaseListAdapter<VB : ViewBinding, VH : BaseListAdapter.BaseViewHo
 ) : PagingDataAdapter<T, VH>(diffUtil) {
 
     override fun setStateRestorationPolicy(strategy: StateRestorationPolicy) {
-        super.setStateRestorationPolicy(StateRestorationPolicy.PREVENT_WHEN_EMPTY)
+        super.setStateRestorationPolicy(StateRestorationPolicy.ALLOW)
     }
 
     abstract fun createViewHolder(parent: ViewGroup, onItemClick: (T) -> Unit): VH
