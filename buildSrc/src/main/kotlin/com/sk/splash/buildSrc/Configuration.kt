@@ -37,7 +37,7 @@ object Configuration {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
         const val paging = "androidx.paging:paging-common-ktx:$pagingVersion"
-        const val pagingRuntime =  "androidx.paging:paging-runtime-ktx:$pagingVersion"
+        const val pagingRuntime = "androidx.paging:paging-runtime-ktx:$pagingVersion"
     }
 
     object Google {
@@ -90,5 +90,9 @@ object Configuration {
 
         const val glide = "com.github.bumptech.glide:glide:$version"
         const val glideCompiler = "com.github.bumptech.glide:compiler:$version"
+    }
+
+    object LeakCanary {
+        const val android = "com.squareup.leakcanary:leakcanary-android:2.8.1"
     }
 }
