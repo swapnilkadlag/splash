@@ -29,4 +29,5 @@ dependencies {
     kapt(Configuration.Retrofit.moshiCodegen)
     implementation(Configuration.Retrofit.loggingInterceptor)
     implementation(Configuration.Kotlin.coroutinesCore)
+    debugImplementation(Configuration.Chucker.library)
 }

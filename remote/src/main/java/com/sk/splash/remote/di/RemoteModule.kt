@@ -1,5 +1,8 @@
 package com.sk.splash.remote.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.Chucker
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.sk.splash.remote.BuildConfig
 import com.sk.splash.remote.adapters.DateTimeAdapter
 import com.sk.splash.remote.utils.Constants.UNSPLASH_BASE_URL
@@ -13,6 +16,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,14 +40,17 @@ object RemoteModule {
     @Provides
     @Singleton
     fun provideRetrofit(
+        @ApplicationContext context: Context,
         dateTimeFormatter: DateTimeFormatter
     ): Retrofit {
-        val interceptor = HttpLoggingInterceptor().setLevel(
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(
             if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC
             else HttpLoggingInterceptor.Level.NONE
         )
+        val chuckerInterceptor = ChuckerInterceptor.Builder(context).build()
         val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(chuckerInterceptor)
             .build()
         val moshi = Moshi.Builder()
             .add(DateTimeAdapter(dateTimeFormatter))

@@ -95,4 +95,8 @@ object Configuration {
     object LeakCanary {
         const val android = "com.squareup.leakcanary:leakcanary-android:2.8.1"
     }
+
+    object Chucker {
+        const val library = "com.github.chuckerteam.chucker:library:3.5.2"
+    }
 }
