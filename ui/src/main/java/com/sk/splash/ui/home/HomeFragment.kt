@@ -13,11 +13,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: BindingProvider<FragmentHomeBinding>
         get() = FragmentHomeBinding::inflate
 
-    private lateinit var homeTabsAdapter: TabsAdapter
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        homeTabsAdapter = TabsAdapter(this, 3) { position ->
+        val homeTabsAdapter = TabsAdapter(this, 3) { position ->
             when (position) {
                 0 -> LatestPhotosFragment()
                 1 -> PopularPhotosFragment()
@@ -37,5 +34,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }.attach()
             viewPager.offscreenPageLimit = 2
         }
+    }
+
+    override fun onDestroyView() {
+        binding.viewPager.adapter = null
+        super.onDestroyView()
     }
 }

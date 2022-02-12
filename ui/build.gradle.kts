@@ -37,5 +37,6 @@ dependencies {
     implementation(Configuration.Glide.glide)
     implementation(Configuration.Glide.glideCompiler)
     implementation(Configuration.AndroidX.pagingRuntime)
+    implementation(Configuration.AndroidX.lifecycleRuntime)
     debugImplementation(Configuration.LeakCanary.android)
 }

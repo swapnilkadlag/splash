@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class LatestPhotosFragment : PhotosFragment() {
 
     override val items get() = viewModel.latestPhotos

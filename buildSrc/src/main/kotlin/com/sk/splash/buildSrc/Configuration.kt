@@ -38,6 +38,12 @@ object Configuration {
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
         const val paging = "androidx.paging:paging-common-ktx:$pagingVersion"
         const val pagingRuntime = "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
+        const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+        const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+        const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:2.4.0"
+        const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+        const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
     }
 
     object Google {
