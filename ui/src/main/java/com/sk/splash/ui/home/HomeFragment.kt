@@ -7,11 +7,15 @@ import com.sk.splash.ui.adapters.TabsAdapter
 import com.sk.splash.ui.databinding.FragmentHomeBinding
 import com.sk.splash.ui.fragments.BaseFragment
 import com.sk.splash.ui.fragments.BindingProvider
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override val bindingInflater: BindingProvider<FragmentHomeBinding>
         get() = FragmentHomeBinding::inflate
+
+    private var mediator: TabLayoutMediator? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val homeTabsAdapter = TabsAdapter(this, 3) { position ->
@@ -24,19 +28,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
         with(binding) {
             viewPager.adapter = homeTabsAdapter
-            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            mediator = TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = when (position) {
                     0 -> "Latest"
                     1 -> "Popular"
                     2 -> "Featured"
                     else -> throw IllegalStateException()
                 }
-            }.attach()
+            }.also { it.attach() }
             viewPager.offscreenPageLimit = 2
         }
     }
 
     override fun onDestroyView() {
+        mediator?.detach()
+        mediator = null
         binding.viewPager.adapter = null
         super.onDestroyView()
     }

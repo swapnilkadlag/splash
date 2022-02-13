@@ -11,10 +11,12 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sk.splash.data.models.UICollection
 import com.sk.splash.ui.fragments.CollectionsFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class FeaturedCollectionsFragment : CollectionsFragment() {
 
     override val items get() = viewModel.featuredCollections

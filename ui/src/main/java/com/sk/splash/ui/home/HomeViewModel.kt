@@ -18,7 +18,6 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val latestPhotos = repository.getLatestPhotos().cachedIn(viewModelScope)
-
     val popularPhotos = repository.getPopularPhotos().cachedIn(viewModelScope)
     val featuredCollections = repository.getFeaturedCollections().cachedIn(viewModelScope)
 }

@@ -37,8 +37,8 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
         setupRecyclerView()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                items.onEach(itemsAdapter::submitData).launchIn(lifecycleScope)
-                itemsAdapter.loadStateFlow.onEach(::updateLoadingState).launchIn(lifecycleScope)
+                items.onEach(itemsAdapter::submitData).launchIn(this)
+                itemsAdapter.loadStateFlow.onEach(::updateLoadingState).launchIn(this)
             }
         }
     }
@@ -47,7 +47,7 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
         _itemsAdapter = CollectionAdapter(::onCollectionClicked)
         binding.rvCollections.apply {
             adapter = itemsAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(context)
         }
     }
 
