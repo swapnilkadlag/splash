@@ -8,4 +8,8 @@ data class UILocation(
     val city: String?,
     val country: String?,
     val position: UIPosition?,
-):Parcelable
+) : Parcelable {
+    override fun toString(): String {
+        return "$city, $country"
+    }
+}

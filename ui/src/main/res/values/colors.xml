@@ -8,4 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#42A5F5</color>
+    <color name="primaryColor">#FFFFFF</color>
+    <color name="primaryDarkColor">#FFFFFF</color>
+    <color name="accentColor">#FFFFFF</color>
+    <color name="mainBackgroundColor">#121213</color>
+    <color name="secondaryBackgroundColor">#212123</color>
+    <color name="tabBackgroundColor">#1E1E1F</color>
+    <color name="barBackgroundColor">#242426</color>
+    <color name="subtitleColor">#636366</color>
+    <color name="selectedColor">#FFFFFF</color>
+    <color name="unselectedColor">#636366</color>
+    <color name="headlineColor">#FFFFFF</color>
+    <color name="iconColor">#FFFFFF</color>
+    <color name="secondaryIconColor">#636366</color>
+    <color name="transparentColor">#00000000</color>
+    <color name="semiTransparentColor">#BF000000</color>
+    <color name="previewBackgroundColor">#1AFFFFFF</color>
+    <color name="immersive_sys_ui">#40000000</color>
 </resources>

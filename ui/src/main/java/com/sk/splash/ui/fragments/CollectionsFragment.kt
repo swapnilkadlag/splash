@@ -25,7 +25,7 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
         get() = FragmentCollectionsBinding::inflate
 
     private var _itemsAdapter: CollectionAdapter? = null
-    private val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
+    private val itemsAdapter get() = requireNotNull(_itemsAdapter)
 
     abstract val items: Flow<PagingData<UICollection>>
 

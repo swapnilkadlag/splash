@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -40,17 +41,30 @@ class PhotoDetailsFragment : BaseFragment<FragmentPhotoDetailsBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.photoDetails.onEach { if (it != null) updateUI(it) }.launchIn(lifecycleScope)
+        viewModel.photoDetails.onEach(::updateUI).launchIn(lifecycleScope)
     }
 
-    private fun updateUI(photoDetails: UIPhotoDetails) = with(binding) {
-        val aspect = photoDetails.height / photoDetails.width.toFloat()
-        binding.ivPhoto.setAspectRatio(aspect)
-        Glide
-            .with(binding.root.context)
-            .load(photoDetails.urls.regular)
-            .placeholder(ColorDrawable(Color.parseColor(photoDetails.color)))
-            .transition(DrawableTransitionOptions.withCrossFade(200))
-            .into(ivPhoto)
+    private fun updateUI(photoDetails: UIPhotoDetails?) = with(binding) {
+        progressBar.isVisible = photoDetails == null
+        llContent.isVisible = photoDetails != null
+
+        if (photoDetails != null) {
+            val aspect = photoDetails.height / photoDetails.width.toFloat()
+            binding.ivPhoto.setAspectRatio(aspect)
+            Glide
+                .with(binding.root.context)
+                .load(photoDetails.urls.regular)
+                .placeholder(ColorDrawable(Color.parseColor(photoDetails.color)))
+                .transition(DrawableTransitionOptions.withCrossFade(200))
+                .into(ivPhoto)
+
+            txtBio.isVisible = photoDetails.description.isNullOrEmpty().not()
+            txtBio.text = photoDetails.description?.trim() ?: ""
+
+            dateLayout.setValue(photoDetails.createdAt)
+            likesLayout.setValue(photoDetails.likes.toString())
+            resolutionLayout.setValue("${photoDetails.width} x ${photoDetails.height}")
+            locationLayout.setValue(photoDetails.location.toString())
+        }
     }
 }
