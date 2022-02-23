@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/home"
         android:name="com.sk.splash.ui.home.HomeFragment"
-        android:label="Home" >
+        android:label="Home">
 
         <action
             android:id="@+id/action_home_to_photoDetails"
@@ -15,7 +15,15 @@
             app:enterAnim="@anim/slide_in_from_bottom"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_down_to_bottom"  />
+            app:popExitAnim="@anim/slide_down_to_bottom" />
+
+        <action
+            android:id="@+id/action_home_to_collectionDetails"
+            app:destination="@id/collectionDetails"
+            app:enterAnim="@anim/slide_in_from_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down_to_bottom" />
 
     </fragment>
 
@@ -32,10 +40,22 @@
     <fragment
         android:id="@+id/photoDetails"
         android:name="com.sk.splash.ui.photodetails.PhotoDetailsFragment"
-        android:label="Overview">
+        android:label="Photo">
 
         <argument
             android:name="photoId"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/collectionDetails"
+        android:name="com.sk.splash.ui.collectiondetails.CollectionDetailsFragment"
+        android:label="Collection">
+
+        <argument
+            android:name="collectionId"
             app:argType="string"
             app:nullable="false" />
 
