@@ -2,16 +2,19 @@ package com.sk.splash.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sk.splash.data.models.UICollection
+import com.sk.splash.ui.R
 import com.sk.splash.ui.adapters.CollectionAdapter
 import com.sk.splash.ui.databinding.FragmentCollectionsBinding
 import kotlinx.coroutines.flow.Flow
@@ -30,7 +33,8 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
     abstract val items: Flow<PagingData<UICollection>>
 
     private fun onCollectionClicked(collection: UICollection) {
-        TODO()
+        val bundle = bundleOf("collectionId" to collection.id)
+        findNavController().navigate(R.id.action_home_to_collectionDetails, bundle)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -2,6 +2,7 @@ package com.sk.splash.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -11,7 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewbinding.ViewBinding
+import com.google.android.material.progressindicator.BaseProgressIndicator
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.sk.splash.data.models.UIPhoto
 import com.sk.splash.ui.R
 import com.sk.splash.ui.adapters.CollectionAdapter
@@ -22,13 +27,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-abstract class PhotosFragment : BaseFragment<FragmentPhotosBinding>() {
-
-    override val bindingInflater: BindingProvider<FragmentPhotosBinding>
-        get() = FragmentPhotosBinding::inflate
+abstract class PhotosFragment<B : ViewBinding> : BaseFragment<B>() {
 
     private var _itemsAdapter: PhotoAdapter? = null
     private val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
+
+    abstract val listView: RecyclerView
+    abstract val progressBar: ProgressBar
 
     abstract val items: Flow<PagingData<UIPhoto>>
 
@@ -49,7 +54,7 @@ abstract class PhotosFragment : BaseFragment<FragmentPhotosBinding>() {
 
     private fun setupRecyclerView() {
         _itemsAdapter = PhotoAdapter(::onPhotoClicked)
-        binding.rvPhotos.apply {
+        listView.apply {
             adapter = itemsAdapter
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         }
