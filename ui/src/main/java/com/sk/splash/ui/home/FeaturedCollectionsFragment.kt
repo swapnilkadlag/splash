@@ -10,6 +10,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sk.splash.data.models.UICollection
+import com.sk.splash.ui.R
 import com.sk.splash.ui.fragments.CollectionsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
@@ -22,4 +23,7 @@ class FeaturedCollectionsFragment : CollectionsFragment() {
     override val items get() = viewModel.featuredCollections
 
     private val viewModel: HomeViewModel by viewModels({ requireParentFragment() })
+
+    override val collectionDetailsActionId: Int
+        get() = R.id.action_home_to_collectionDetails
 }

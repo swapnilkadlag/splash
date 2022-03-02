@@ -6,6 +6,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.sk.splash.data.models.UIPhoto
+import com.sk.splash.ui.R
 import com.sk.splash.ui.databinding.FragmentCollectionDetailsBinding
 import com.sk.splash.ui.databinding.FragmentPhotoDetailsBinding
 import com.sk.splash.ui.fragments.BaseFragment
@@ -43,4 +44,7 @@ class CollectionDetailsFragment : PhotosFragment<FragmentCollectionDetailsBindin
 
     override val items: Flow<PagingData<UIPhoto>>
         get() = viewModel.collectionPhotos
+
+    override val photoDetailsActionId: Int
+        get() = R.id.action_collectionDetails_to_photoDetails
 }

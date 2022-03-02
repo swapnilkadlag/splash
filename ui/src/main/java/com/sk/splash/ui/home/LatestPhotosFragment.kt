@@ -10,6 +10,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.sk.splash.ui.R
 import com.sk.splash.ui.databinding.FragmentPhotosBinding
 import com.sk.splash.ui.fragments.BindingProvider
 import com.sk.splash.ui.fragments.PhotosFragment
@@ -35,4 +36,7 @@ class LatestPhotosFragment : PhotosFragment<FragmentPhotosBinding>() {
 
     override val progressBar: ProgressBar
         get() = binding.progressBar
+
+    override val photoDetailsActionId: Int
+        get() = R.id.action_home_to_photoDetails
 }

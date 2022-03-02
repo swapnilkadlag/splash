@@ -59,6 +59,14 @@
             app:argType="string"
             app:nullable="false" />
 
+        <action
+            android:id="@+id/action_collectionDetails_to_photoDetails"
+            app:destination="@id/photoDetails"
+            app:enterAnim="@anim/slide_in_from_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down_to_bottom" />
+
     </fragment>
 
 </navigation>

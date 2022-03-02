@@ -3,6 +3,8 @@ package com.sk.splash.ui.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
+import androidx.annotation.IdRes
+import androidx.annotation.IntegerRes
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -37,9 +39,12 @@ abstract class PhotosFragment<B : ViewBinding> : BaseFragment<B>() {
 
     abstract val items: Flow<PagingData<UIPhoto>>
 
+    @get:IdRes
+    abstract val photoDetailsActionId: Int
+
     private fun onPhotoClicked(photo: UIPhoto) {
         val bundle = bundleOf("photoId" to photo.id)
-        findNavController().navigate(R.id.action_home_to_photoDetails, bundle)
+        findNavController().navigate(photoDetailsActionId, bundle)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

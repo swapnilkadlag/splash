@@ -2,6 +2,7 @@ package com.sk.splash.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.IdRes
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -32,9 +33,12 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
 
     abstract val items: Flow<PagingData<UICollection>>
 
+    @get:IdRes
+    abstract val collectionDetailsActionId: Int
+
     private fun onCollectionClicked(collection: UICollection) {
         val bundle = bundleOf("collectionId" to collection.id)
-        findNavController().navigate(R.id.action_home_to_collectionDetails, bundle)
+        findNavController().navigate(collectionDetailsActionId, bundle)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
