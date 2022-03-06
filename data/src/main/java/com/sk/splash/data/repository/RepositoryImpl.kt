@@ -11,6 +11,7 @@ import com.sk.splash.remote.models.RemoteResult
 import com.sk.splash.remote.service.RemoteService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -93,8 +94,8 @@ class RepositoryImpl @Inject constructor(
         }
     }.flow
 
-    override fun searchPhotos(query: String) = finitePager { page ->
-        when (val res = remoteService.searchPhotos(query, page)) {
+    override fun searchPhotos(query: MutableStateFlow<String>) = finitePager { page ->
+        when (val res = remoteService.searchPhotos(query.value, page)) {
             is RemoteResult.Success -> FinitePageData(
                 remotePhotoMapper.map(res.data.results),
                 res.data.totalPages
@@ -137,8 +138,8 @@ class RepositoryImpl @Inject constructor(
         }
     }.flow
 
-    override fun searchCollections(query: String) = finitePager { page ->
-        when (val res = remoteService.searchCollections(query, page)) {
+    override fun searchCollections(query: MutableStateFlow<String>) = finitePager { page ->
+        when (val res = remoteService.searchCollections(query.value, page)) {
             is RemoteResult.Success -> FinitePageData(
                 remoteCollectionMapper.map(res.data.results),
                 res.data.totalPages
@@ -164,13 +165,13 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override fun searchUsers(query: String) = finitePager { page ->
-        when (val res = remoteService.searchUsers(query, page)) {
+    override fun searchUsers(query: MutableStateFlow<String>) = finitePager { page ->
+        when (val res = remoteService.searchUsers(query.value, page)) {
             is RemoteResult.Success -> FinitePageData(
                 remoteUserMapper.map(res.data.results),
                 res.data.totalPages
             )
-            is RemoteResult.Error -> FinitePageData.empty<UIUser>()
+            is RemoteResult.Error -> FinitePageData.empty()
         }
     }.flow
 

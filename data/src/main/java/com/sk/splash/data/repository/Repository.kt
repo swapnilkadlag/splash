@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.sk.splash.data.models.*
 import com.sk.splash.data.models.UICollection
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 interface Repository {
     suspend fun saveFavouriteUser(user: UIUser)
@@ -28,7 +29,7 @@ interface Repository {
 
     fun getPopularPhotos(): Flow<PagingData<UIPhoto>>
 
-    fun searchPhotos(query: String): Flow<PagingData<UIPhoto>>
+    fun searchPhotos(query: MutableStateFlow<String>): Flow<PagingData<UIPhoto>>
 
     fun getCollectionPhotos(id: String): Flow<PagingData<UIPhoto>>
 
@@ -38,13 +39,13 @@ interface Repository {
 
     fun getFeaturedCollections(): Flow<PagingData<UICollection>>
 
-    fun searchCollections(query: String): Flow<PagingData<UICollection>>
+    fun searchCollections(query: MutableStateFlow<String>): Flow<PagingData<UICollection>>
 
     fun getCreatedCollections(username: String): Flow<PagingData<UICollection>>
 
     suspend fun getCollection(id: String): UIResult<UICollectionDetails>
 
-    fun searchUsers(query: String): Flow<PagingData<UIUser>>
+    fun searchUsers(query: MutableStateFlow<String>): Flow<PagingData<UIUser>>
 
     suspend fun getUser(username: String): UIResult<UIUserDetails>
 }

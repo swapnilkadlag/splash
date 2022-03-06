@@ -2,6 +2,7 @@ package com.sk.splash.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -29,13 +30,14 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
         get() = FragmentCollectionsBinding::inflate
 
     private var _itemsAdapter: CollectionAdapter? = null
-    private val itemsAdapter get() = requireNotNull(_itemsAdapter)
+    val itemsAdapter get() = requireNotNull(_itemsAdapter)
 
     abstract val items: Flow<PagingData<UICollection>>
 
     @get:IdRes
     abstract val collectionDetailsActionId: Int
 
+    @CallSuper
     private fun onCollectionClicked(collection: UICollection) {
         val bundle = bundleOf("collectionId" to collection.id)
         findNavController().navigate(collectionDetailsActionId, bundle)

@@ -3,6 +3,7 @@ package com.sk.splash.ui.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
+import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
 import androidx.annotation.IntegerRes
 import androidx.core.os.bundleOf
@@ -32,7 +33,7 @@ import kotlinx.coroutines.launch
 abstract class PhotosFragment<B : ViewBinding> : BaseFragment<B>() {
 
     private var _itemsAdapter: PhotoAdapter? = null
-    private val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
+    val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
 
     abstract val listView: RecyclerView
     abstract val progressBar: ProgressBar
@@ -47,6 +48,7 @@ abstract class PhotosFragment<B : ViewBinding> : BaseFragment<B>() {
         findNavController().navigate(photoDetailsActionId, bundle)
     }
 
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupRecyclerView()
         viewLifecycleOwner.lifecycleScope.launch {

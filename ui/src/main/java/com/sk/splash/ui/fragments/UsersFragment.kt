@@ -3,10 +3,26 @@ package com.sk.splash.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
+import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.paging.PagingData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.sk.splash.data.models.UIPhoto
 import com.sk.splash.data.models.UIUser
 import com.sk.splash.ui.adapters.PhotoAdapter
 import com.sk.splash.ui.adapters.UserAdapter
 import com.sk.splash.ui.databinding.FragmentUsersBinding
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 abstract class UsersFragment : BaseFragment<FragmentUsersBinding>() {
 
@@ -14,20 +30,34 @@ abstract class UsersFragment : BaseFragment<FragmentUsersBinding>() {
         get() = FragmentUsersBinding::inflate
 
     private var _itemsAdapter: UserAdapter? = null
-    private val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
+    val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
+
+    abstract val items: Flow<PagingData<UIUser>>
 
     private fun onUserClicked(user: UIUser) {
-        TODO()
     }
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        _itemsAdapter = UserAdapter(::onUserClicked)
+        setupRecyclerView()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                items.onEach(itemsAdapter::submitData).launchIn(this)
+                itemsAdapter.loadStateFlow.onEach(::updateLoadingState).launchIn(this)
+            }
+        }
     }
 
-    override fun onDestroy() {
-        _itemsAdapter = null
-        super.onDestroy()
+    private fun setupRecyclerView() {
+        _itemsAdapter = UserAdapter(::onUserClicked)
+        binding.rvUsers.apply {
+            adapter = itemsAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    private fun updateLoadingState(state: CombinedLoadStates) = with(binding) {
+        progressBar.isVisible = state.refresh is LoadState.Loading
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#121213"
+        android:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextAppearance="?textAppearanceSubtitle1" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:background="@color/mainBackgroundColor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/secondaryIconColor"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/iconColor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtSearchQuery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/barBackgroundColor"
+            android:gravity="center_vertical"
+            android:hint="Search..."
+            android:singleLine="true"
+            android:textColor="@color/headlineColor"
+            android:textColorHint="@color/subtitleColor"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
