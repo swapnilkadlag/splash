@@ -8,5 +8,5 @@ data class UICollection(
     val id: String,
     val title: String,
     val coverPhoto: UIPhoto?,
-):Parcelable
+) : Parcelable
 

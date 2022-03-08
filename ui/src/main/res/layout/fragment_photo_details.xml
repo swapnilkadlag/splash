@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,19 +10,26 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:layout_gravity="center"
         android:indeterminate="true"
-        android:layout_gravity="center"/>
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/llContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/llContent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/llOptions"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:orientation="vertical">
 
             <com.sk.splash.ui.widgets.AspectRatioImageView
                 android:id="@+id/ivPhoto"
@@ -32,14 +39,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:id="@+id/llPhotoDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
                 android:orientation="vertical"
-                android:padding="8dp"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto"
-                tools:visibility="visible">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/txtBio"
@@ -84,8 +87,79 @@
 
             </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </ScrollView>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/llOptions"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/mainBackgroundColor"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnExif"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:backgroundTint="@color/transparentColor"
+            app:icon="@drawable/ic_info"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/iconColor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShare"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:backgroundTint="@color/transparentColor"
+            app:icon="@drawable/ic_share"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/iconColor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWallpaper"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:backgroundTint="@color/transparentColor"
+            app:icon="@drawable/ic_wallpaper"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/iconColor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDownload"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:backgroundTint="@color/transparentColor"
+            app:icon="@drawable/ic_download"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/iconColor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLike"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:backgroundTint="@color/transparentColor"
+            app:icon="@drawable/ic_favorite_outlined"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/iconColor" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

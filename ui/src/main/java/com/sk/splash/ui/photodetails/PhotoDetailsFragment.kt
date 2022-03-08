@@ -42,6 +42,10 @@ class PhotoDetailsFragment : BaseFragment<FragmentPhotoDetailsBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.photoDetails.onEach(::updateUI).launchIn(lifecycleScope)
+
+        binding.btnLike.setOnClickListener {
+            viewModel.markFavorite()
+        }
     }
 
     private fun updateUI(photoDetails: UIPhotoDetails?) = with(binding) {

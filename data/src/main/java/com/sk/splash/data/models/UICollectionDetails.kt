@@ -13,4 +13,4 @@ data class UICollectionDetails(
     val coverPhoto: UIPhotoDetails?,
     val user: UIUserDetails,
     val webLink: String,
-):Parcelable
+) : Parcelable

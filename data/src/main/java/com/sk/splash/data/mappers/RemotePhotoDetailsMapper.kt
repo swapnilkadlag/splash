@@ -27,6 +27,8 @@ class RemotePhotoDetailsMapperImpl(
             from.location?.let { locationMapper.map(it) },
             photoUrlsMapper.map(from.urls),
             from.links.html,
+            false,
+            null,
         )
     }
 

@@ -16,6 +16,8 @@ class LocalCoverPhotoMapperImpl(
             from.height,
             photoUrlsMapper.map(from.urls),
             from.color,
+            false,
+            null,
         )
     }
 

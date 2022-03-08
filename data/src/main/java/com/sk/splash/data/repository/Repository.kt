@@ -3,11 +3,14 @@ package com.sk.splash.data.repository
 import androidx.paging.PagingData
 import com.sk.splash.data.models.*
 import com.sk.splash.data.models.UICollection
+import com.sk.splash.remote.models.RemoteCollectionDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 interface Repository {
     suspend fun saveFavouriteUser(user: UIUser)
+
+    suspend fun saveFavouriteUser(userDetails: UIUserDetails)
 
     suspend fun removeFavouriteUser(username: String)
 
@@ -15,11 +18,15 @@ interface Repository {
 
     suspend fun saveFavouritePhoto(photo: UIPhoto)
 
+    suspend fun saveFavouritePhoto(photoDetails: UIPhotoDetails)
+
     suspend fun removeFavouritePhoto(id: String)
 
     fun getFavouritePhotos(): Flow<List<UIPhoto>>
 
     suspend fun saveFavouriteCollection(collection: UICollection)
+
+    suspend fun saveFavouriteCollection(collectionDetails: UICollectionDetails)
 
     suspend fun removeFavouriteCollection(id: String)
 

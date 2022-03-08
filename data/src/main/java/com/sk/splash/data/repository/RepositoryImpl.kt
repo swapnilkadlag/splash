@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.ceil
-import kotlin.math.roundToInt
 
 class RepositoryImpl @Inject constructor(
     private val localUserMapper: LocalUserMapper,
@@ -38,6 +37,12 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun saveFavouriteUser(userDetails: UIUserDetails) {
+        scope.launch {
+            //localService.saveFavouriteUser(localUserMapper.mapBack(user))
+        }
+    }
+
     override suspend fun removeFavouriteUser(username: String) {
         scope.launch {
             localService.removeFavouriteUser(username)
@@ -50,6 +55,21 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun saveFavouritePhoto(photo: UIPhoto) {
         scope.launch {
+            localService.saveFavouritePhoto(localPhotoMapper.mapBack(photo))
+        }
+    }
+
+    override suspend fun saveFavouritePhoto(photoDetails: UIPhotoDetails) {
+        scope.launch {
+            val photo = UIPhoto(
+                photoDetails.id,
+                photoDetails.width,
+                photoDetails.height,
+                photoDetails.urls,
+                photoDetails.color,
+                photoDetails.saved,
+                photoDetails.savedDate,
+            )
             localService.saveFavouritePhoto(localPhotoMapper.mapBack(photo))
         }
     }
@@ -67,6 +87,12 @@ class RepositoryImpl @Inject constructor(
     override suspend fun saveFavouriteCollection(collection: UICollection) {
         scope.launch {
             localService.saveFavouriteCollection(localCollectionMapper.mapBack(collection))
+        }
+    }
+
+    override suspend fun saveFavouriteCollection(collectionDetails: UICollectionDetails) {
+        scope.launch {
+            //localService.saveFavouriteCollection(localCollectionMapper.mapBack(collection))
         }
     }
 

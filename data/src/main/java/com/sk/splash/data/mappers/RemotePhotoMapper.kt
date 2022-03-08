@@ -15,6 +15,8 @@ class RemotePhotoMapperImpl(
             from.height,
             photoUrlsMapper.map(from.urls),
             from.color,
+            false,
+            null,
         )
     }
 }

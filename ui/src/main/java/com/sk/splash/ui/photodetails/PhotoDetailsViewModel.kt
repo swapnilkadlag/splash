@@ -12,7 +12,6 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.util.*
 
 class PhotoDetailsViewModel @AssistedInject constructor(
     private val repository: Repository,
@@ -43,6 +42,18 @@ class PhotoDetailsViewModel @AssistedInject constructor(
             when (val result = repository.getPhoto(photoId)) {
                 is UIResult.Success -> _photoDetails.value = result.data
                 is UIResult.Error -> {}
+            }
+        }
+    }
+
+    fun markFavorite() {
+        viewModelScope.launch {
+            photoDetails.value?.let {
+                if (it.saved) {
+                    repository.removeFavouritePhoto(it.id)
+                } else {
+                    repository.saveFavouritePhoto(it)
+                }
             }
         }
     }

@@ -16,6 +16,8 @@ class LocalPhotoMapperImpl(
             from.height,
             photoUrlsMapper.map(from.urls),
             from.color,
+            true,
+            from.savedAt,
         )
     }
 

@@ -2,6 +2,7 @@ package com.sk.splash.data.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import org.threeten.bp.LocalDateTime
 
 @Parcelize
 data class UIPhotoDetails(
@@ -17,4 +18,6 @@ data class UIPhotoDetails(
     val location: UILocation?,
     val urls: UIPhotoUrls,
     val webLink: String,
+    val saved: Boolean,
+    val savedDate: LocalDateTime?,
 ) : Parcelable
