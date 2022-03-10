@@ -1,4 +1,4 @@
-package com.sk.splash.ui.search
+package com.sk.splash.ui.favourites
 
 import android.os.Bundle
 import android.view.View
@@ -13,14 +13,13 @@ import com.sk.splash.data.models.UIUser
 import com.sk.splash.ui.databinding.FragmentUsersBinding
 import com.sk.splash.ui.fragments.BindingProvider
 import com.sk.splash.ui.fragments.UsersFragment
-import dagger.hilt.android.AndroidEntryPoint
+import com.sk.splash.ui.search.SearchViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
-class SearchedUsersFragment : UsersFragment<FragmentUsersBinding>() {
+class FavoriteUsersFragment : UsersFragment<FragmentUsersBinding>() {
 
-    private val viewModel: SearchViewModel by viewModels({ requireParentFragment() })
+    private val viewModel: FavoritesViewModel by viewModels({ requireParentFragment() })
 
     override val bindingInflater: BindingProvider<FragmentUsersBinding>
         get() = FragmentUsersBinding::inflate
@@ -39,18 +38,5 @@ class SearchedUsersFragment : UsersFragment<FragmentUsersBinding>() {
     }
 
     override val items: Flow<PagingData<UIUser>>
-        get() = viewModel.searchedUsers
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.searchQuery
-                    .distinctUntilChanged { old, new -> old == new }
-                    .debounce(500)
-                    .onEach { itemsAdapter.refresh() }
-                    .launchIn(this)
-            }
-        }
-    }
+        get() = viewModel.users
 }

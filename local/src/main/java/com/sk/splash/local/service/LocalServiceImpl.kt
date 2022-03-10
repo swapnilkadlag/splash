@@ -1,5 +1,6 @@
 package com.sk.splash.local.service
 
+import androidx.paging.PagingSource
 import com.sk.splash.local.db.LocalDatabase
 import com.sk.splash.local.entities.LocalCollection
 import com.sk.splash.local.entities.LocalPhoto
@@ -20,7 +21,7 @@ class LocalServiceImpl @Inject constructor(
         localDatabase.userDao().delete(username)
     }
 
-    override fun getFavouriteUsers(): Flow<List<LocalUser>> {
+    override fun getFavouriteUsers(): PagingSource<Int, LocalUser> {
         return localDatabase.userDao().getAll()
     }
 
@@ -32,7 +33,7 @@ class LocalServiceImpl @Inject constructor(
         localDatabase.photoDao().delete(id)
     }
 
-    override fun getFavouritePhotos(): Flow<List<LocalPhoto>> {
+    override fun getFavouritePhotos(): PagingSource<Int, LocalPhoto> {
         return localDatabase.photoDao().getAll()
     }
 
@@ -45,7 +46,7 @@ class LocalServiceImpl @Inject constructor(
         localDatabase.collectionDao().delete(id)
     }
 
-    override fun getFavouriteCollections(): Flow<List<LocalCollection>> {
+    override fun getFavouriteCollections(): PagingSource<Int, LocalCollection> {
         return localDatabase.collectionDao().getAll()
     }
 }

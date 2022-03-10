@@ -15,6 +15,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.sk.splash.data.models.UICollection
 import com.sk.splash.ui.R
 import com.sk.splash.ui.adapters.CollectionAdapter
@@ -24,25 +25,17 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() {
-
-    override val bindingInflater: BindingProvider<FragmentCollectionsBinding>
-        get() = FragmentCollectionsBinding::inflate
+abstract class CollectionsFragment<B : ViewBinding> : ListFragment<UICollection, B>() {
 
     private var _itemsAdapter: CollectionAdapter? = null
     val itemsAdapter get() = requireNotNull(_itemsAdapter)
 
-    abstract val items: Flow<PagingData<UICollection>>
-
-    @get:IdRes
-    abstract val collectionDetailsActionId: Int
-
-    @CallSuper
-    private fun onCollectionClicked(collection: UICollection) {
-        val bundle = bundleOf("collectionId" to collection.id)
-        findNavController().navigate(collectionDetailsActionId, bundle)
+    override fun onItemClick(item: UICollection) {
+        val bundle = bundleOf("collectionId" to item.id)
+        findNavController().navigate(detailsActionId, bundle)
     }
 
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupRecyclerView()
         viewLifecycleOwner.lifecycleScope.launch {
@@ -54,14 +47,14 @@ abstract class CollectionsFragment : BaseFragment<FragmentCollectionsBinding>() 
     }
 
     private fun setupRecyclerView() {
-        _itemsAdapter = CollectionAdapter(::onCollectionClicked)
-        binding.rvCollections.apply {
+        _itemsAdapter = CollectionAdapter(::onItemClick)
+        listView.apply {
             adapter = itemsAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
 
-    private fun updateLoadingState(state: CombinedLoadStates) = with(binding) {
+    private fun updateLoadingState(state: CombinedLoadStates) {
         progressBar.isVisible = state.refresh is LoadState.Loading
     }
 

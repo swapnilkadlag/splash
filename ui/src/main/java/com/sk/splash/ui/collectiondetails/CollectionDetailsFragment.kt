@@ -45,6 +45,6 @@ class CollectionDetailsFragment : PhotosFragment<FragmentCollectionDetailsBindin
     override val items: Flow<PagingData<UIPhoto>>
         get() = viewModel.collectionPhotos
 
-    override val photoDetailsActionId: Int
+    override val detailsActionId: Int
         get() = R.id.action_collectionDetails_to_photoDetails
 }

@@ -1,11 +1,14 @@
 package com.sk.splash.data.repository
 
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.sk.splash.data.mappers.*
 import com.sk.splash.data.models.*
 import com.sk.splash.data.models.UICollection
 import com.sk.splash.data.paging.FinitePageData
 import com.sk.splash.data.paging.finitePager
 import com.sk.splash.data.paging.infinitePager
+import com.sk.splash.data.paging.infiniteDbPager
 import com.sk.splash.local.service.LocalService
 import com.sk.splash.remote.models.RemoteResult
 import com.sk.splash.remote.service.RemoteService
@@ -49,8 +52,10 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getFavouriteUsers(): Flow<List<UIUser>> {
-        return localService.getFavouriteUsers().map(localUserMapper::map)
+    override fun getFavouriteUsers(): Flow<PagingData<UIUser>> {
+        return infiniteDbPager { localService.getFavouriteUsers() }.flow.map {
+            it.map(localUserMapper::map)
+        }
     }
 
     override suspend fun saveFavouritePhoto(photo: UIPhoto) {
@@ -80,8 +85,10 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getFavouritePhotos(): Flow<List<UIPhoto>> {
-        return localService.getFavouritePhotos().map(localPhotoMapper::map)
+    override fun getFavouritePhotos(): Flow<PagingData<UIPhoto>> {
+        return infiniteDbPager { localService.getFavouritePhotos() }.flow.map {
+            it.map(localPhotoMapper::map)
+        }
     }
 
     override suspend fun saveFavouriteCollection(collection: UICollection) {
@@ -102,8 +109,10 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getFavouriteCollections(): Flow<List<UICollection>> {
-        return localService.getFavouriteCollections().map(localCollectionMapper::map)
+    override fun getFavouriteCollections(): Flow<PagingData<UICollection>> {
+        return infiniteDbPager { localService.getFavouriteCollections() }.flow.map {
+            it.map(localCollectionMapper::map)
+        }
     }
 
     override fun getLatestPhotos() = infinitePager { page ->

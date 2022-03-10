@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 import org.threeten.bp.LocalDateTime
 
 @Parcelize
-open class UIPhoto(
+data class UIPhoto(
     val id: String,
     val width: Int,
     val height: Int,

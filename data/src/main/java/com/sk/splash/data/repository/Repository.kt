@@ -14,7 +14,7 @@ interface Repository {
 
     suspend fun removeFavouriteUser(username: String)
 
-    fun getFavouriteUsers(): Flow<List<UIUser>>
+    fun getFavouriteUsers(): Flow<PagingData<UIUser>>
 
     suspend fun saveFavouritePhoto(photo: UIPhoto)
 
@@ -22,7 +22,7 @@ interface Repository {
 
     suspend fun removeFavouritePhoto(id: String)
 
-    fun getFavouritePhotos(): Flow<List<UIPhoto>>
+    fun getFavouritePhotos(): Flow<PagingData<UIPhoto>>
 
     suspend fun saveFavouriteCollection(collection: UICollection)
 
@@ -30,7 +30,7 @@ interface Repository {
 
     suspend fun removeFavouriteCollection(id: String)
 
-    fun getFavouriteCollections(): Flow<List<UICollection>>
+    fun getFavouriteCollections(): Flow<PagingData<UICollection>>
 
     fun getLatestPhotos(): Flow<PagingData<UIPhoto>>
 

@@ -38,7 +38,7 @@ class SearchedPhotosFragment : PhotosFragment<FragmentPhotosBinding>() {
     override val items: Flow<PagingData<UIPhoto>>
         get() = viewModel.searchedPhotos
 
-    override val photoDetailsActionId: Int
+    override val detailsActionId: Int
         get() = R.id.action_search_to_photoDetails
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

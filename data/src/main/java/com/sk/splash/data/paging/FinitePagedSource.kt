@@ -1,6 +1,7 @@
 package com.sk.splash.data.paging
 
 import androidx.paging.Pager
+import androidx.paging.PagingSource
 
 data class FinitePageData<T>(
     val items: List<T>,
@@ -17,6 +18,14 @@ fun <V : Any> finitePager(
 ): Pager<Int, V> = Pager(
     config = defaultPagingConfig,
     pagingSourceFactory = { FinitePagedSource(totalPages, block) }
+)
+
+fun <V : Any> finitePager(
+    totalPages: Int = 1,
+    pagingSource: PagingSource<Int, V>
+): Pager<Int, V> = Pager(
+    config = defaultPagingConfig,
+    pagingSourceFactory = { pagingSource },
 )
 
 class FinitePagedSource<V : Any>(

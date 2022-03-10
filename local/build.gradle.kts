@@ -18,4 +18,5 @@ dependencies {
     kapt(Configuration.Room.compiler)
     implementation(Configuration.Room.runtime)
     implementation(Configuration.Room.ktx)
+    implementation(Configuration.AndroidX.pagingRoom)
 }

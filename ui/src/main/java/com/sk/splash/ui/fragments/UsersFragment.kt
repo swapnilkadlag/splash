@@ -14,6 +14,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.sk.splash.data.models.UIPhoto
 import com.sk.splash.data.models.UIUser
 import com.sk.splash.ui.adapters.PhotoAdapter
@@ -24,15 +25,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-abstract class UsersFragment : BaseFragment<FragmentUsersBinding>() {
-
-    override val bindingInflater: BindingProvider<FragmentUsersBinding>
-        get() = FragmentUsersBinding::inflate
+abstract class UsersFragment<B : ViewBinding> : ListFragment<UIUser, B>() {
 
     private var _itemsAdapter: UserAdapter? = null
     val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
-
-    abstract val items: Flow<PagingData<UIUser>>
 
     private fun onUserClicked(user: UIUser) {
     }
@@ -50,13 +46,13 @@ abstract class UsersFragment : BaseFragment<FragmentUsersBinding>() {
 
     private fun setupRecyclerView() {
         _itemsAdapter = UserAdapter(::onUserClicked)
-        binding.rvUsers.apply {
+        listView.apply {
             adapter = itemsAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
 
-    private fun updateLoadingState(state: CombinedLoadStates) = with(binding) {
+    private fun updateLoadingState(state: CombinedLoadStates) {
         progressBar.isVisible = state.refresh is LoadState.Loading
     }
 

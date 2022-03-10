@@ -1,13 +1,20 @@
 package com.sk.splash.data.paging
 
-import android.util.Log
 import androidx.paging.Pager
+import androidx.paging.PagingSource
 
 fun <V : Any> infinitePager(
     block: suspend (Int) -> List<V>
 ): Pager<Int, V> = Pager(
     config = defaultPagingConfig,
     pagingSourceFactory = { InfinitePagedSource(block) }
+)
+
+fun <V : Any> infiniteDbPager(
+    pagingSourceProducer: () -> PagingSource<Int, V>,
+): Pager<Int, V> = Pager(
+    config = defaultPagingConfig,
+    pagingSourceFactory = pagingSourceProducer
 )
 
 class InfinitePagedSource<V : Any>(

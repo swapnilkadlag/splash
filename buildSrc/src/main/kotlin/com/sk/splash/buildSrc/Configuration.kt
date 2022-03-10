@@ -38,6 +38,7 @@ object Configuration {
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
         const val paging = "androidx.paging:paging-common-ktx:$pagingVersion"
         const val pagingRuntime = "androidx.paging:paging-runtime-ktx:$pagingVersion"
+        const val pagingRoom = "androidx.room:room-paging:2.5.0-alpha01"
 
         const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
         const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"

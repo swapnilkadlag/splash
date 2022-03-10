@@ -1,5 +1,6 @@
 package com.sk.splash.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.sk.splash.local.entities.LocalCollection
 import com.sk.splash.local.entities.LocalPhoto
@@ -14,5 +15,5 @@ abstract class LocalPhotoDao {
     abstract suspend fun delete(id: String)
 
     @Query("SELECT * FROM photo ORDER BY photo.savedAt DESC")
-    abstract fun getAll(): Flow<List<LocalPhoto>>
+    abstract fun getAll(): PagingSource<Int, LocalPhoto>
 }

@@ -30,22 +30,14 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-abstract class PhotosFragment<B : ViewBinding> : BaseFragment<B>() {
+abstract class PhotosFragment<B : ViewBinding> : ListFragment<UIPhoto, B>() {
 
     private var _itemsAdapter: PhotoAdapter? = null
     val itemsAdapter get() = _itemsAdapter ?: throw IllegalStateException()
 
-    abstract val listView: RecyclerView
-    abstract val progressBar: ProgressBar
-
-    abstract val items: Flow<PagingData<UIPhoto>>
-
-    @get:IdRes
-    abstract val photoDetailsActionId: Int
-
-    private fun onPhotoClicked(photo: UIPhoto) {
-        val bundle = bundleOf("photoId" to photo.id)
-        findNavController().navigate(photoDetailsActionId, bundle)
+    override fun onItemClick(item: UIPhoto) {
+        val bundle = bundleOf("photoId" to item.id)
+        findNavController().navigate(detailsActionId, bundle)
     }
 
     @CallSuper
@@ -60,14 +52,14 @@ abstract class PhotosFragment<B : ViewBinding> : BaseFragment<B>() {
     }
 
     private fun setupRecyclerView() {
-        _itemsAdapter = PhotoAdapter(::onPhotoClicked)
+        _itemsAdapter = PhotoAdapter(::onItemClick)
         listView.apply {
             adapter = itemsAdapter
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         }
     }
 
-    private fun updateLoadingState(state: CombinedLoadStates) = with(binding) {
+    private fun updateLoadingState(state: CombinedLoadStates) {
         progressBar.isVisible = state.refresh is LoadState.Loading
     }
 

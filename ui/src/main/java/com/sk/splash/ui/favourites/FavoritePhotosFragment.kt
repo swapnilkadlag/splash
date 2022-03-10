@@ -1,4 +1,4 @@
-package com.sk.splash.ui.home
+package com.sk.splash.ui.favourites
 
 import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
@@ -10,11 +10,11 @@ import com.sk.splash.ui.fragments.PhotosFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PopularPhotosFragment : PhotosFragment<FragmentPhotosBinding>() {
+class FavoritePhotosFragment : PhotosFragment<FragmentPhotosBinding>() {
 
-    override val items get() = viewModel.popularPhotos
+    override val items get() = viewModel.photos
 
-    private val viewModel: HomeViewModel by viewModels({ requireParentFragment() })
+    private val viewModel: FavoritesViewModel by viewModels({ requireParentFragment() })
 
     override val bindingInflater: BindingProvider<FragmentPhotosBinding>
         get() = FragmentPhotosBinding::inflate

@@ -37,6 +37,6 @@ class LatestPhotosFragment : PhotosFragment<FragmentPhotosBinding>() {
     override val progressBar: ProgressBar
         get() = binding.progressBar
 
-    override val photoDetailsActionId: Int
+    override val detailsActionId: Int
         get() = R.id.action_home_to_photoDetails
 }

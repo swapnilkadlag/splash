@@ -1,5 +1,6 @@
 package com.sk.splash.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.sk.splash.local.entities.*
 import kotlinx.coroutines.flow.Flow
@@ -13,5 +14,5 @@ abstract class LocalCollectionDao {
     abstract suspend fun delete(id: String)
 
     @Query("SELECT * FROM collection ORDER BY collection.savedAt DESC")
-    abstract fun getAll(): Flow<List<LocalCollection>>
+    abstract fun getAll(): PagingSource<Int, LocalCollection>
 }
