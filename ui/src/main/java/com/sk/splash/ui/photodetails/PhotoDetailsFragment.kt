@@ -3,6 +3,9 @@ package com.sk.splash.ui.photodetails
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -11,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.sk.splash.data.models.UIPhotoDetails
+import com.sk.splash.ui.R
 import com.sk.splash.ui.databinding.FragmentPhotoDetailsBinding
 import com.sk.splash.ui.fragments.BaseFragment
 import com.sk.splash.ui.fragments.BindingProvider
@@ -38,14 +42,33 @@ class PhotoDetailsFragment : BaseFragment<FragmentPhotoDetailsBinding>() {
     override val bindingInflater: BindingProvider<FragmentPhotoDetailsBinding>
         get() = FragmentPhotoDetailsBinding::inflate
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.photoDetails.onEach(::updateUI).launchIn(lifecycleScope)
+    }
 
-        binding.btnLike.setOnClickListener {
-            viewModel.markFavorite()
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.photo_details_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.favourite -> {
+                viewModel.markFavorite()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
+    }
+
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
     }
 
     private fun updateUI(photoDetails: UIPhotoDetails?) = with(binding) {

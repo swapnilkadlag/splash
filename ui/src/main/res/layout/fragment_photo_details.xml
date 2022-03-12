@@ -147,19 +147,7 @@
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconTint="@color/iconColor" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLike"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:backgroundTint="@color/transparentColor"
-            app:icon="@drawable/ic_favorite_outlined"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="@color/iconColor" />
-
+=
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

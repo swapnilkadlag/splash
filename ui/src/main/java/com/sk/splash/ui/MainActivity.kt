@@ -26,5 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(controller)
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.home, R.id.search, R.id.favorites))
         binding.toolbar.setupWithNavController(controller, appBarConfiguration)
+
+        setSupportActionBar(binding.toolbar)
     }
 }

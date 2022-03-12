@@ -26,5 +26,5 @@ class FavoritePhotosFragment : PhotosFragment<FragmentPhotosBinding>() {
         get() = binding.progressBar
 
     override val detailsActionId: Int
-        get() = R.id.action_home_to_photoDetails
+        get() = R.id.action_favorites_to_photoDetails
 }
