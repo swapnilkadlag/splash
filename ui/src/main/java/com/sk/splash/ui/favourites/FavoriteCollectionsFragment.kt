@@ -28,5 +28,5 @@ class FavoriteCollectionsFragment : CollectionsFragment<FragmentCollectionsBindi
         get() = binding.progressBar
 
     override val detailsActionId: Int
-        get() = R.id.action_home_to_collectionDetails
+        get() = R.id.action_favorites_to_collectionDetails
 }

@@ -36,7 +36,7 @@ class CollectionDetailsViewModel @AssistedInject constructor(
         }
     }
 
-    private var _collectionDetails: MutableStateFlow<UICollectionDetails?> = MutableStateFlow(null)
+    private val _collectionDetails: MutableStateFlow<UICollectionDetails?> = MutableStateFlow(null)
     val collectionDetails: StateFlow<UICollectionDetails?> get() = _collectionDetails
 
     val collectionPhotos = repository.getCollectionPhotos(collectionId).cachedIn(viewModelScope)
@@ -46,6 +46,19 @@ class CollectionDetailsViewModel @AssistedInject constructor(
             when (val result = repository.getCollection(collectionId)) {
                 is UIResult.Success -> _collectionDetails.value = result.data
                 is UIResult.Error -> {}
+            }
+        }
+    }
+
+    fun markFavorite() {
+        viewModelScope.launch {
+            _collectionDetails.value?.let {
+                if (it.saved) {
+                    repository.removeFavouriteCollection(it.id)
+                } else {
+                    repository.saveFavouriteCollection(it)
+                }
+                _collectionDetails.value = it.copy(saved = !it.saved)
             }
         }
     }

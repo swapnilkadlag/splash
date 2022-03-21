@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/search"
         android:name="com.sk.splash.ui.search.SearchFragment"
-        android:label="Search" >
+        android:label="Search">
 
         <action
             android:id="@+id/action_search_to_photoDetails"
@@ -53,11 +53,19 @@
     <fragment
         android:id="@+id/favorites"
         android:name="com.sk.splash.ui.favourites.FavoritesFragment"
-        android:label="Favorites" >
+        android:label="Favorites">
 
         <action
             android:id="@+id/action_favorites_to_photoDetails"
             app:destination="@id/photoDetails"
+            app:enterAnim="@anim/slide_in_from_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down_to_bottom" />
+        
+        <action
+            android:id="@+id/action_favorites_to_collectionDetails"
+            app:destination="@id/collectionDetails"
             app:enterAnim="@anim/slide_in_from_bottom"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
