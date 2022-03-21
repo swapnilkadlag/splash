@@ -17,7 +17,9 @@ class RemoteUserDetailsMapperImpl(
             from.bio,
             from.location,
             from.profileImage?.let { profileImageUrlMapper.map(it) },
-            from.links.html
+            from.links.html,
+            false,
+            null,
         )
     }
 }

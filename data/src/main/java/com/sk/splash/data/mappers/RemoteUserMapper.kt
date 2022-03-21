@@ -13,6 +13,8 @@ class RemoteUserMapperImpl(
             from.username,
             from.name,
             from.profileImage?.let { profileImageUrlMapper.map(it) },
+            false,
+            null,
         )
     }
 }

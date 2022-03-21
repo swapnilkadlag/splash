@@ -8,21 +8,27 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalService {
 
-    suspend fun saveFavouriteUser(user: LocalUser)
+    suspend fun saveUser(user: LocalUser)
 
-    suspend fun removeFavouriteUser(username: String)
+    suspend fun removeUser(username: String)
 
-    fun getFavouriteUsers(): PagingSource<Int, LocalUser>
+    suspend fun getUser(username: String): LocalUser?
 
-    suspend fun saveFavouritePhoto(photo: LocalPhoto)
+    fun getUsers(): PagingSource<Int, LocalUser>
 
-    suspend fun removeFavouritePhoto(id: String)
+    suspend fun savePhoto(photo: LocalPhoto)
 
-    fun getFavouritePhotos(): PagingSource<Int, LocalPhoto>
+    suspend fun removePhoto(id: String)
 
-    suspend fun saveFavouriteCollection(collection: LocalCollection)
+    suspend fun getPhoto(id: String): LocalPhoto?
 
-    suspend fun removeFavouriteCollection(id: String)
+    fun getPhotos(): PagingSource<Int, LocalPhoto>
 
-    fun getFavouriteCollections(): PagingSource<Int, LocalCollection>
+    suspend fun saveCollection(collection: LocalCollection)
+
+    suspend fun removeCollection(id: String)
+
+    suspend fun getCollection(id: String): LocalCollection?
+
+    fun getCollections(): PagingSource<Int, LocalCollection>
 }

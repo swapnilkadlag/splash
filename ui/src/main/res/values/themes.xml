@@ -19,5 +19,6 @@
         <item name="textAppearanceCaption">@style/TextAppearance.Splash.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.Splash.Overline</item>
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Splash.SmallComponent</item>
+        <item name="colorControlNormal">@color/black</item>
     </style>
 </resources>

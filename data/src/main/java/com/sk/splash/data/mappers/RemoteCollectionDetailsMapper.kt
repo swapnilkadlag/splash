@@ -21,6 +21,8 @@ class RemoteCollectionDetailsMapperImpl(
             from.coverPhoto?.let { coverPhotoMapper.map(it) },
             userDetailsMapper.map(from.user),
             from.links.html,
+            false,
+            null,
         )
     }
 }

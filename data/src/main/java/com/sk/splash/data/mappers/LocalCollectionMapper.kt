@@ -13,7 +13,9 @@ class LocalCollectionMapperImpl(
         return UICollection(
             from.id,
             from.title,
-            from.coverPhoto?.let { coverPhotoMapper.map(it) }
+            from.coverPhoto?.let { coverPhotoMapper.map(it) },
+            false,
+            null,
         )
     }
 

@@ -12,7 +12,9 @@ class RemoteCollectionMapperImpl(
         return UICollection(
             from.id,
             from.title,
-            from.coverPhoto?.let { photoMapper.map(it) }
+            from.coverPhoto?.let { photoMapper.map(it) },
+            false,
+            null,
         )
     }
 }

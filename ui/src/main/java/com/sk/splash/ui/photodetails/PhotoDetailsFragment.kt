@@ -66,8 +66,16 @@ class PhotoDetailsFragment : BaseFragment<FragmentPhotoDetailsBinding>() {
         }
     }
 
-
     override fun onPrepareOptionsMenu(menu: Menu) {
+        val favourite = menu.findItem(R.id.favourite)
+        requireNotNull(favourite)
+        viewModel.photoDetails.value?.let {
+            if (it.saved) {
+                favourite.setIcon(R.drawable.ic_favorite)
+            } else {
+                favourite.setIcon(R.drawable.ic_favorite_outlined)
+            }
+        }
         super.onPrepareOptionsMenu(menu)
     }
 
@@ -92,6 +100,8 @@ class PhotoDetailsFragment : BaseFragment<FragmentPhotoDetailsBinding>() {
             likesLayout.setValue(photoDetails.likes.toString())
             resolutionLayout.setValue("${photoDetails.width} x ${photoDetails.height}")
             locationLayout.setValue(photoDetails.location.toString())
+
+            requireActivity().invalidateOptionsMenu()
         }
     }
 }

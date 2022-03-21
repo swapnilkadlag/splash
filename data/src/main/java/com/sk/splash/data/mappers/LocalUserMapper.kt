@@ -14,6 +14,8 @@ class LocalUserMapperImpl(
             from.username,
             from.name,
             from.profileImage?.let { profileImageUrlMapper.map(it) },
+            true,
+            from.savedAt,
         )
     }
 

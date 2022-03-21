@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import org.threeten.bp.LocalDateTime
 import javax.inject.Inject
 import kotlin.math.ceil
 
@@ -36,31 +37,38 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
     override suspend fun saveFavouriteUser(user: UIUser) {
         scope.launch {
-            localService.saveFavouriteUser(localUserMapper.mapBack(user))
+            localService.saveUser(localUserMapper.mapBack(user))
         }
     }
 
     override suspend fun saveFavouriteUser(userDetails: UIUserDetails) {
         scope.launch {
-            //localService.saveFavouriteUser(localUserMapper.mapBack(user))
+            val user = UIUser(
+                userDetails.username,
+                userDetails.name,
+                userDetails.profileImage,
+                true,
+                LocalDateTime.now(),
+            )
+            localService.saveUser(localUserMapper.mapBack(user))
         }
     }
 
     override suspend fun removeFavouriteUser(username: String) {
         scope.launch {
-            localService.removeFavouriteUser(username)
+            localService.removeUser(username)
         }
     }
 
     override fun getFavouriteUsers(): Flow<PagingData<UIUser>> {
-        return infiniteDbPager { localService.getFavouriteUsers() }.flow.map {
+        return infiniteDbPager { localService.getUsers() }.flow.map {
             it.map(localUserMapper::map)
         }
     }
 
     override suspend fun saveFavouritePhoto(photo: UIPhoto) {
         scope.launch {
-            localService.saveFavouritePhoto(localPhotoMapper.mapBack(photo))
+            localService.savePhoto(localPhotoMapper.mapBack(photo))
         }
     }
 
@@ -72,45 +80,62 @@ class RepositoryImpl @Inject constructor(
                 photoDetails.height,
                 photoDetails.urls,
                 photoDetails.color,
-                photoDetails.saved,
-                photoDetails.savedDate,
+                true,
+                LocalDateTime.now(),
             )
-            localService.saveFavouritePhoto(localPhotoMapper.mapBack(photo))
+            localService.savePhoto(localPhotoMapper.mapBack(photo))
         }
     }
 
     override suspend fun removeFavouritePhoto(id: String) {
         scope.launch {
-            localService.removeFavouritePhoto(id)
+            localService.removePhoto(id)
         }
     }
 
     override fun getFavouritePhotos(): Flow<PagingData<UIPhoto>> {
-        return infiniteDbPager { localService.getFavouritePhotos() }.flow.map {
+        return infiniteDbPager { localService.getPhotos() }.flow.map {
             it.map(localPhotoMapper::map)
         }
     }
 
     override suspend fun saveFavouriteCollection(collection: UICollection) {
         scope.launch {
-            localService.saveFavouriteCollection(localCollectionMapper.mapBack(collection))
+            localService.saveCollection(localCollectionMapper.mapBack(collection))
         }
     }
 
     override suspend fun saveFavouriteCollection(collectionDetails: UICollectionDetails) {
         scope.launch {
-            //localService.saveFavouriteCollection(localCollectionMapper.mapBack(collection))
+            val collection = UICollection(
+                collectionDetails.id,
+                collectionDetails.title,
+                collectionDetails.coverPhoto?.let {
+                    UIPhoto(
+                        it.id,
+                        it.width,
+                        it.height,
+                        it.urls,
+                        it.color,
+                        false,
+                        null,
+                    )
+                },
+                true,
+                LocalDateTime.now(),
+            )
+            localService.saveCollection(localCollectionMapper.mapBack(collection))
         }
     }
 
     override suspend fun removeFavouriteCollection(id: String) {
         scope.launch {
-            localService.removeFavouriteCollection(id)
+            localService.removeCollection(id)
         }
     }
 
     override fun getFavouriteCollections(): Flow<PagingData<UICollection>> {
-        return infiniteDbPager { localService.getFavouriteCollections() }.flow.map {
+        return infiniteDbPager { localService.getCollections() }.flow.map {
             it.map(localCollectionMapper::map)
         }
     }
@@ -161,7 +186,14 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getPhoto(id: String): UIResult<UIPhotoDetails> {
         return when (val res = remoteService.getPhoto(id)) {
-            is RemoteResult.Success -> UIResult.Success(remotePhotoDetailsMapper.map(res.data))
+            is RemoteResult.Success -> {
+                var photo = remotePhotoDetailsMapper.map(res.data)
+                val localPhoto = localService.getPhoto(id)
+                localPhoto?.let {
+                    photo = photo.copy(saved = true, savedAt = it.savedAt)
+                }
+                UIResult.Success(photo)
+            }
             is RemoteResult.Error -> UIResult.Error(res.exception)
         }
     }
@@ -195,7 +227,14 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getCollection(id: String): UIResult<UICollectionDetails> {
         return when (val res = remoteService.getCollection(id)) {
-            is RemoteResult.Success -> UIResult.Success(remoteCollectionDetailsMapper.map(res.data))
+            is RemoteResult.Success -> {
+                var collection = remoteCollectionDetailsMapper.map(res.data)
+                val localCollection = localService.getCollection(id)
+                localCollection?.let {
+                    collection = collection.copy(saved = true, savedAt = it.savedAt)
+                }
+                UIResult.Success(collection)
+            }
             is RemoteResult.Error -> UIResult.Error(res.exception)
         }
     }
@@ -212,7 +251,14 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getUser(username: String): UIResult<UIUserDetails> {
         return when (val res = remoteService.getUser(username)) {
-            is RemoteResult.Success -> UIResult.Success(remoteUserDetailsMapper.map(res.data))
+            is RemoteResult.Success -> {
+                var user = remoteUserDetailsMapper.map(res.data)
+                val localUser = localService.getUser(username)
+                localUser?.let {
+                    user = user.copy(saved = true, savedAt = it.savedAt)
+                }
+                UIResult.Success(user)
+            }
             is RemoteResult.Error -> UIResult.Error(res.exception)
         }
     }

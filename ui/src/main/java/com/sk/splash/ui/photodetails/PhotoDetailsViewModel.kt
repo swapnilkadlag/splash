@@ -34,7 +34,7 @@ class PhotoDetailsViewModel @AssistedInject constructor(
         }
     }
 
-    private var _photoDetails: MutableStateFlow<UIPhotoDetails?> = MutableStateFlow(null)
+    private val _photoDetails: MutableStateFlow<UIPhotoDetails?> = MutableStateFlow(null)
     val photoDetails: StateFlow<UIPhotoDetails?> get() = _photoDetails
 
     init {
@@ -48,12 +48,13 @@ class PhotoDetailsViewModel @AssistedInject constructor(
 
     fun markFavorite() {
         viewModelScope.launch {
-            photoDetails.value?.let {
+            _photoDetails.value?.let {
                 if (it.saved) {
                     repository.removeFavouritePhoto(it.id)
                 } else {
                     repository.saveFavouritePhoto(it)
                 }
+                _photoDetails.value = it.copy(saved = !it.saved)
             }
         }
     }

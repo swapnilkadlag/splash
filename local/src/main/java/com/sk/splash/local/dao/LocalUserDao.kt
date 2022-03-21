@@ -14,4 +14,7 @@ abstract class LocalUserDao {
 
     @Query("SELECT * FROM user ORDER BY user.savedAt DESC")
     abstract fun getAll(): PagingSource<Int, LocalUser>
+
+    @Query("SELECT * FROM user WHERE username = :username")
+    abstract suspend fun get(username: String): LocalUser?
 }

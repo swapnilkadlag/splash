@@ -19,5 +19,5 @@ data class UIPhotoDetails(
     val urls: UIPhotoUrls,
     val webLink: String,
     val saved: Boolean,
-    val savedDate: LocalDateTime?,
+    val savedAt: LocalDateTime?,
 ) : Parcelable

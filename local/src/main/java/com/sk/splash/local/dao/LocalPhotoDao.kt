@@ -16,4 +16,7 @@ abstract class LocalPhotoDao {
 
     @Query("SELECT * FROM photo ORDER BY photo.savedAt DESC")
     abstract fun getAll(): PagingSource<Int, LocalPhoto>
+
+    @Query("SELECT * FROM photo WHERE id = :id")
+    abstract fun get(id: String): LocalPhoto?
 }

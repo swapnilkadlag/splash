@@ -15,4 +15,7 @@ abstract class LocalCollectionDao {
 
     @Query("SELECT * FROM collection ORDER BY collection.savedAt DESC")
     abstract fun getAll(): PagingSource<Int, LocalCollection>
+
+    @Query("SELECT * FROM collection WHERE id = :id")
+    abstract fun get(id: String): LocalCollection?
 }
