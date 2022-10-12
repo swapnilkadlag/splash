@@ -27,6 +27,7 @@ Splash demonstrates modern Android development with Hilt, Coroutines, Flow, Jetp
 - [Moshi](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
 - [Glide](https://github.com/bumptech/glide),
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components for building ripple animation, and CardView.
+- [LeakCanary](https://square.github.io/leakcanary/) - Memory Leaks Detection
 
 ## Architecture
 Splash is based on the MVVM architecture and the Repository pattern.
